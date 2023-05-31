@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import dj_database_url
 import os
 from pathlib import Path
+import django_heroku
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +30,7 @@ SECRET_KEY = 'f2zx8*lb*em*-*b+!&1lpp&$_9q9kmkar+l3x90do@s(+sr&x7'  # Consider us
 DEBUG = True
 
 # ALLOWED_HOSTS = ['smswithdjango.herokuapp.com']
-ALLOWED_HOSTS = ['127.0.0.1']  # Not recommended but useful in dev mode
+ALLOWED_HOSTS = ['*']  # Not recommended but useful in dev mode
 
 
 # Application definition
@@ -167,3 +168,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 prod_db = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
+
+django_heroku.settings(locals())
